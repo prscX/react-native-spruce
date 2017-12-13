@@ -5,12 +5,9 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { Platform, StyleSheet, Text, View, findNodeHandle } from "react-native";
+
+import RNSpruce from 'react-native-spruce'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,20 +17,22 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+
+  componentDidMount () {
+    setTimeout(() => {
+      let viewId = findNodeHandle(this.ref);
+      RNSpruce.StartAnimator(viewId);
+    }, 0);
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
+    return <View style={styles.container} ref={ref => {
+          this.ref = ref;
+        }}>
+        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>{instructions}</Text>
+      </View>;
   }
 }
 

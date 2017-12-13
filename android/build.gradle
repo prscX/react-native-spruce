@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
 
     defaultConfig {
@@ -32,5 +32,6 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
+    compile 'com.willowtreeapps.spruce:spruce-android:1.0.1'
 }
   
