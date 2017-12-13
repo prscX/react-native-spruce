@@ -1,0 +1,5 @@
+rootProject.name = 'SpruceExample'
+include ':react-native-spruce'
+project(':react-native-spruce').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-spruce/android')
+
+include ':app'
