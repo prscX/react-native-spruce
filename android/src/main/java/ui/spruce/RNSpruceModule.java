@@ -13,7 +13,10 @@ import com.facebook.react.bridge.Promise;
 
 import com.willowtreeapps.spruce.Spruce;
 import com.willowtreeapps.spruce.animation.DefaultAnimations;
+import com.willowtreeapps.spruce.sort.ContinuousSort;
 import com.willowtreeapps.spruce.sort.DefaultSort;
+import com.willowtreeapps.spruce.sort.LinearSort;
+import com.willowtreeapps.spruce.sort.RadialSort;
 
 public class RNSpruceModule extends ReactContextBaseJavaModule {
 
@@ -34,11 +37,13 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
     final Activity activity = this.getCurrentActivity();
     final ViewGroup targetView = activity.findViewById(parentView);
 
+    if (targetView == null) return;
+
     activity.runOnUiThread(new Runnable() {
       @Override
       public void run() {
         Spruce.SpruceBuilder spruceAnimator = new Spruce.SpruceBuilder(targetView);
-        spruceAnimator.sortWith(new DefaultSort(/*interObjectDelay=*/50L));
+        spruceAnimator.sortWith(new ContinuousSort(/*interObjectDelay=*/1000L, /*reversed=*/false, ContinuousSort.Position.BOTTOM_LEFT));
         spruceAnimator
             .animateWith(new Animator[] { DefaultAnimations.shrinkAnimator(targetView, /*duration=*/800) });
 

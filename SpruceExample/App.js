@@ -22,7 +22,7 @@ export default class App extends Component<{}> {
     setTimeout(() => {
       let viewId = findNodeHandle(this.ref);
       RNSpruce.StartAnimator(viewId);
-    }, 0);
+    }, 1000);
   }
 
   render() {
