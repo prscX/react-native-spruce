@@ -5,9 +5,16 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, findNodeHandle } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  findNodeHandle,
+  FlatList
+} from "react-native";
 
-import RNSpruce from 'react-native-spruce'
+import { Spruce, DefaultSort } from "react-native-spruce";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -16,22 +23,73 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const items = [
+  {
+    topicCat: "Wise",
+    topicCatData: [
+      {
+        topicName: "Quotes",
+        topicDescription: "Some quotes to inspire you",
+        topicSummary: "Simple motivational quotes",
+        imageurl: "imageurl",
+        topicCategory: "Wise",
+        topicId: 0
+      }
+    ]
+  },
+  {
+    topicCat: "Wise 1"
+  },
+  {
+    topicCat: "Wise 2"
+  },
+  {
+    topicCat: "Wise 3"
+  },
+  {
+    topicCat: "Wise 4"
+  },
+  {
+    topicCat: "Wise 5"
+  },
+  {
+    topicCat: "Wise 6"
+  }
+];
+
 export default class App extends Component<{}> {
 
   componentDidMount () {
     setTimeout(() => {
-      let viewId = findNodeHandle(this.ref);
-      RNSpruce.StartAnimator(viewId);
-    }, 1000);
+      let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
+
+      let defaultSort = new DefaultSort()
+
+      spruceBuilder.sortWith(defaultSort)
+      spruceBuilder.start()
+    }, 0);
+  }
+
+  renderFlatListItem(item) {
+      return (
+        <View key={"parentView"+item.topicCat} style={{ flex: 1}}>
+          <Text key={"topicCat"+item.topicCat} style={{ flex: 1}}>{item.topicCat}</Text>
+        </View>
+      )
   }
 
   render() {
-    return <View style={styles.container} ref={ref => {
+    // return <View style={styles.container} ref={ref => {
+    //       this.ref = ref;
+    //     }}>
+    //     <Text style={styles.welcome}>Welcome to React Native!</Text>
+    //     <Text style={styles.instructions}>To get started, edit App.js</Text>
+    //     <Text style={styles.instructions}>{instructions}</Text>
+    //   </View>;
+    return <View>
+        <FlatList key={"flatlistexample"} data={items} renderItem={({ item }) => this.renderFlatListItem(item)} ref={ref => {
           this.ref = ref;
-        }}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        }}/>
       </View>;
   }
 }
