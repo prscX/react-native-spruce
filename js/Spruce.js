@@ -13,10 +13,15 @@ Spruce.SpruceBuilder = (view) => {
             this.sortWith = sortWith.toJSON()
         },
 
+        animateWith: (animateWith) => {
+            this.animateWith = animateWith
+        },
+
         start: () => {
             RNSpruce.StartAnimator(
                 this.view,
-                this.sortWith
+                this.sortWith,
+                this.animateWith
             )
         }
     }

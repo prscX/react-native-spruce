@@ -14,7 +14,7 @@ import {
   FlatList
 } from "react-native";
 
-import { Spruce, DefaultSort } from "react-native-spruce";
+import { Spruce, DefaultSort, DefaultAnimations } from "react-native-spruce";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -64,8 +64,11 @@ export default class App extends Component<{}> {
       let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
 
       let defaultSort = new DefaultSort()
+      let defaultAnimations = DefaultAnimations.shrinkAnimator();
 
       spruceBuilder.sortWith(defaultSort)
+      spruceBuilder.animateWith(defaultAnimations);
+      
       spruceBuilder.start()
     }, 0);
   }
