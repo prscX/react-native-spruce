@@ -7,7 +7,7 @@ class RandomSort {
   }
 
   toJSON() {
-    return { interObjectDelay: this.interObjectDelay }
+    return { name: "RandomSort", interObjectDelay: this.interObjectDelay };
   }
 }
 

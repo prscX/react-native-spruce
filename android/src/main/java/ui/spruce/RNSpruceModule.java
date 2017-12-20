@@ -36,12 +36,14 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
     return "RNSpruce";
   }
 
+
   @ReactMethod 
   public void StartAnimator(final int parentView, final ReadableMap sortWith, final ReadableMap animateWith, final Promise promise) {
     final Activity activity = this.getCurrentActivity();
-    final ViewGroup targetView = activity.findViewById(parentView);
+    ViewGroup parentTargetView = activity.findViewById(parentView);
 
-    if (targetView == null) return;
+    if (parentTargetView == null) return;
+    final ViewGroup targetView = (ViewGroup) parentTargetView.getChildAt(0);
 
     activity.runOnUiThread(new Runnable() {
       @Override
@@ -55,12 +57,12 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
 
             spruceAnimator.sortWith(new DefaultSort(interObjectDelay));
             break;
-          case "ContinuousSort":
+          case "CorneredSort":
             interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
             boolean reversed = new Boolean(sortWith.getString("reversed")).booleanValue();
             String corner = sortWith.getString("corner");
 
-            spruceAnimator.sortWith(new ContinuousSort(interObjectDelay, reversed, ContinuousSort.Position.valueOf(corner)));
+            spruceAnimator.sortWith(new CorneredSort(interObjectDelay, reversed, CorneredSort.Corner.valueOf(corner)));
             break;
           case "LinearSort":
             interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
@@ -68,6 +70,13 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
             String direction = sortWith.getString("direction");
 
             spruceAnimator.sortWith(new LinearSort(interObjectDelay, reversed, LinearSort.Direction.valueOf(direction)));
+            break;
+          case "ContinuousSort":
+            interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
+            reversed = new Boolean(sortWith.getString("reversed")).booleanValue();
+            String position = sortWith.getString("position");
+
+            spruceAnimator.sortWith(new ContinuousSort(interObjectDelay, reversed, RadialSort.Position.valueOf(position)));
             break;
           case "RadialSort":
             interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
@@ -98,7 +107,7 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
             spruceAnimator.animateWith(DefaultAnimations.growAnimator(targetView, duration));
             break;
           case "shrinkAnimator":
-            spruceAnimator.animateWith(DefaultAnimations.shrinkAnimator(targetView, duration));
+            spruceAnimator.animateWith(DefaultAnimations.shrinkAnimator(targetView, duration), ObjectAnimator.ofFloat(targetView, "translationX", -targetView.getWidth(), 0f).setDuration(800));
             break;
           case "spinAnimator":
             spruceAnimator.animateWith(DefaultAnimations.spinAnimator(targetView, duration));

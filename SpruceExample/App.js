@@ -14,7 +14,16 @@ import {
   FlatList
 } from "react-native";
 
-import { Spruce, DefaultSort, DefaultAnimations } from "react-native-spruce";
+import {
+  Spruce,
+  DefaultSort,
+  RandomSort,
+  CorneredSort,
+  LinearSort,
+  RadialSort,
+  DefaultAnimations
+} from "react-native-spruce";
+import Placeholder from 'rn-placeholder';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -26,16 +35,6 @@ const instructions = Platform.select({
 const items = [
   {
     topicCat: "Wise",
-    topicCatData: [
-      {
-        topicName: "Quotes",
-        topicDescription: "Some quotes to inspire you",
-        topicSummary: "Simple motivational quotes",
-        imageurl: "imageurl",
-        topicCategory: "Wise",
-        topicId: 0
-      }
-    ]
   },
   {
     topicCat: "Wise 1"
@@ -63,22 +62,31 @@ export default class App extends Component<{}> {
     setTimeout(() => {
       let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
 
-      let defaultSort = new DefaultSort()
-      let defaultAnimations = DefaultAnimations.shrinkAnimator();
+      let defaultSort = new CorneredSort("100");
+      let defaultAnimations = DefaultAnimations.shrinkAnimator('800');
 
       spruceBuilder.sortWith(defaultSort)
       spruceBuilder.animateWith(defaultAnimations);
       
       spruceBuilder.start()
-    }, 0);
+    }, 100);
   }
 
   renderFlatListItem(item) {
-      return (
-        <View key={"parentView"+item.topicCat} style={{ flex: 1}}>
-          <Text key={"topicCat"+item.topicCat} style={{ flex: 1}}>{item.topicCat}</Text>
-        </View>
-      )
+      return <View 
+      ref={ref => {this.refItem = ref}}
+      key={"parentView" + item.topicCat} style={{ flex: 1, height: 100, backgroundColor: "#ffffff", alignItems: "center", margin: 5 }}
+      >
+          <Placeholder.ImageContent key={"placeholder" + item.topicCat} size={60} lineNumber={4} lineSpacing={5} lastLineWidth="30%" onReady={false} color={"#c7e3f2"}>
+            <Text key={"text" + item.topicCat}>
+              Placeholder has finished :D
+            </Text>
+          </Placeholder.ImageContent>
+        </View>;
+  }
+
+  renderSeparator () {
+    return <View style={{ flex: 1, height: 2, backgroundColor: "#ededed" }} />;
   }
 
   render() {
@@ -89,10 +97,10 @@ export default class App extends Component<{}> {
     //     <Text style={styles.instructions}>To get started, edit App.js</Text>
     //     <Text style={styles.instructions}>{instructions}</Text>
     //   </View>;
-    return <View>
+    return <View style={{ flex: 1, backgroundColor: "#ededed" }}>
         <FlatList key={"flatlistexample"} data={items} renderItem={({ item }) => this.renderFlatListItem(item)} ref={ref => {
-          this.ref = ref;
-        }}/>
+            this.ref = ref;
+          }} ItemSeparatorComponent={this.renderSeparator} style={{ backgroundColor: "#ededed" }} keyExtractor={(item, index) => index} />
       </View>;
   }
 }
