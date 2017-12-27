@@ -101,6 +101,16 @@ let sort = new InlineSort(/*interObjectDelay=*/100L, /*reversed=*/false, LinearS
 let sort = new ContinousSort(/*interObjectDelay=*/100L, /*reversed=*/false, ContinousSort.Position.TOP_LEFT);
 ```
 
+## Stock Animators
+
+To make everybody's lives easier, the stock animators perform basic View animations that a lot of apps use today. Mix and match these animators to get the core motion you are looking for.
+
+- `DefaultAnimations.growAnimator(duration:number)`
+- `DefaultAnimations.shrinkAnimator(duration:number)`
+- `DefaultAnimations.fadeAwayAnimator(duration:number)`
+- `DefaultAnimations.fadeInAnimator(duration:number)`
+- `DefaultAnimations.spinAnimator(duration:number)`
+
 
 ## Contributions
 Any type of contribution will be very much appreciated
