@@ -38,7 +38,7 @@ import {
 
 let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
 
-let defaultSort = new CorneredSort(100);
+let defaultSort = new DefaultSort(100);
 let defaultAnimations = DefaultAnimations.shrinkAnimator(800);
 
 spruceBuilder.sortWith(defaultSort)
@@ -48,11 +48,70 @@ spruceBuilder.start();
 
 ```
 
+## Using a SortFunction
+Luckily, RNSpruce comes with 8 `SortFunction` implementations with a wide open possibility to make more! Use the `SortFunction` to change the order in which views animate. Consider the following example:
 
-# Contributions
+```javascript
+let sort = new LinearSort(/*interObjectDelay=*/100L, /*reversed=*/false, LinearSort.Direction.TOP_TO_BOTTOM);
+```
+
+In this example we have created a `LinearSort` which will have views animate in from the top to bottom. We can change the look and feel of the animation by using a `RadialSort` instead which will have the views animate in a circular fashion. If we wanted to use this `sort` in an actual Spruce `start()` call then that would look something like:
+
+```javascript
+let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
+
+let linearSort = new LinearSort(100);
+let defaultAnimations = DefaultAnimations.shrinkAnimator(800);
+
+spruceBuilder.sortWith(linearSort)
+spruceBuilder.animateWith(defaultAnimations);
+
+spruceBuilder.start();
+
+```
+
+To make sure that developers can use RNSpruce out of the box, we included about 8 stock `SortFunction` implementations. These are some of the main functions we use at WillowTree and are so excited to see what others come up with!
+
+- DefaultSort
+```javascript
+let sort = new defaultSort(/*interObjectDelay=*/100L);
+```
+
+- LinearSort
+```javascript
+let sort = new LinearSort(/*interObjectDelay=*/100L, /*reversed=*/false, LinearSort.Direction.TOP_TO_BOTTOM);
+```
+
+- CorneredSort
+```javascript
+let sort = new CorneredSort(/*interObjectDelay=*/100L, /*reversed=*/false, CorneredSort.Corner.TOP_LEFT);
+```
+
+- RadialSort
+```javascript
+let sort = new RadialSort(/*interObjectDelay=*/100L, /*reversed=*/false, RadialSort.Position.TOP_LEFT);
+```
+
+- RandomSort
+```javascript
+let sort = new RandomSort(/*interObjectDelay=*/100L);
+```
+
+- InlineSort
+```javascript
+let sort = new InlineSort(/*interObjectDelay=*/100L, /*reversed=*/false, LinearSort.Direction.TOP_TO_BOTTOM);
+```
+
+- ContinousSort
+```javascript
+let sort = new ContinousSort(/*interObjectDelay=*/100L, /*reversed=*/false, ContinousSort.Position.TOP_LEFT);
+```
+
+
+## Contributions
 Any type of contribution will be very much appreciated
 
-# License
+## License
 Copyright @2017 Pranav Raj Singh Chauhan
 
 The React Native TapTargetView is provided under the MIT License.
