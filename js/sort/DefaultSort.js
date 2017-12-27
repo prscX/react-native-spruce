@@ -5,7 +5,7 @@ class DefaultSort {
   constructor(interObjectDelay) {
     this.interObjectDelay = interObjectDelay
 
-    if (this.interObjectDelay === undefined) this.interObjectDelay = "50"
+    if (this.interObjectDelay === undefined) this.interObjectDelay = 50
   }
 
   toJSON() {

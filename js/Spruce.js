@@ -17,11 +17,12 @@ Spruce.SpruceBuilder = (view) => {
             this.animateWith = animateWith
         },
 
-        start: () => {
+        start: (animator) => {
             RNSpruce.StartAnimator(
                 this.view,
                 this.sortWith,
-                this.animateWith
+                this.animateWith,
+                animator
             )
         }
     }

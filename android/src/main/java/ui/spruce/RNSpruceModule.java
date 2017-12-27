@@ -12,7 +12,9 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.views.scroll.ReactScrollView;
 import com.willowtreeapps.spruce.Spruce;
 import com.willowtreeapps.spruce.animation.DefaultAnimations;
 import com.willowtreeapps.spruce.sort.ContinuousSort;
@@ -21,6 +23,8 @@ import com.willowtreeapps.spruce.sort.DefaultSort;
 import com.willowtreeapps.spruce.sort.LinearSort;
 import com.willowtreeapps.spruce.sort.RadialSort;
 import com.willowtreeapps.spruce.sort.RandomSort;
+
+import java.util.ArrayList;
 
 public class RNSpruceModule extends ReactContextBaseJavaModule {
 
@@ -38,12 +42,14 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
 
 
   @ReactMethod 
-  public void StartAnimator(final int parentView, final ReadableMap sortWith, final ReadableMap animateWith, final Promise promise) {
+  public void StartAnimator(final int parentView, final ReadableMap sortWith, final ReadableMap animateWith, final ReadableMap animator, final Promise promise) {
     final Activity activity = this.getCurrentActivity();
     ViewGroup parentTargetView = activity.findViewById(parentView);
 
     if (parentTargetView == null) return;
-    final ViewGroup targetView = (ViewGroup) parentTargetView.getChildAt(0);
+    if (parentTargetView instanceof ReactScrollView) parentTargetView = (ViewGroup) parentTargetView.getChildAt(0);
+
+    final ViewGroup targetView = (ViewGroup) parentTargetView;
 
     activity.runOnUiThread(new Runnable() {
       @Override
@@ -53,40 +59,40 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
         String sortType = sortWith.getString("name");
         switch(sortType) {
           case "DefaultSort":
-            long interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
+            long interObjectDelay = sortWith.getInt("interObjectDelay");
 
             spruceAnimator.sortWith(new DefaultSort(interObjectDelay));
             break;
           case "CorneredSort":
-            interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
-            boolean reversed = new Boolean(sortWith.getString("reversed")).booleanValue();
+            interObjectDelay = sortWith.getInt("interObjectDelay");
+            boolean reversed = sortWith.getBoolean("reversed");
             String corner = sortWith.getString("corner");
 
             spruceAnimator.sortWith(new CorneredSort(interObjectDelay, reversed, CorneredSort.Corner.valueOf(corner)));
             break;
           case "LinearSort":
-            interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
-            reversed = new Boolean(sortWith.getString("reversed")).booleanValue();
+            interObjectDelay = sortWith.getInt("interObjectDelay");
+            reversed = sortWith.getBoolean("reversed");
             String direction = sortWith.getString("direction");
 
             spruceAnimator.sortWith(new LinearSort(interObjectDelay, reversed, LinearSort.Direction.valueOf(direction)));
             break;
           case "ContinuousSort":
-            interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
-            reversed = new Boolean(sortWith.getString("reversed")).booleanValue();
+            interObjectDelay = sortWith.getInt("interObjectDelay");
+            reversed = sortWith.getBoolean("reversed");
             String position = sortWith.getString("position");
 
             spruceAnimator.sortWith(new ContinuousSort(interObjectDelay, reversed, RadialSort.Position.valueOf(position)));
             break;
           case "RadialSort":
-            interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
-            reversed = new Boolean(sortWith.getString("reversed")).booleanValue();
-            String position = sortWith.getString("position");
+            interObjectDelay = sortWith.getInt("interObjectDelay");
+            reversed = sortWith.getBoolean("reversed");
+            position = sortWith.getString("position");
 
             spruceAnimator.sortWith(new RadialSort(interObjectDelay, reversed, RadialSort.Position.valueOf(position)));
             break;
           case "RandomSort":
-            interObjectDelay = new Long(sortWith.getString("interObjectDelay")).longValue();
+            interObjectDelay = sortWith.getInt("interObjectDelay");
 
             spruceAnimator.sortWith(new RandomSort(interObjectDelay));
             break;
@@ -94,23 +100,60 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
 
 
         String animateType = animateWith.getString("name");
-        long duration = new Long(animateWith.getString("duration")).longValue();
+        long duration = animateWith.getInt("duration");
+
+        Animator finalAnimator = null;
+        if (animator != null) {
+          ReadableArray rnValues = animator.getArray("values");
+          float[] values = new float[rnValues.size()];
+
+          for (int index = 0; index < rnValues.size();index++) {
+            values[index] = rnValues.getInt(index);
+          }
+
+          finalAnimator = ObjectAnimator.ofFloat(targetView, animator.getString("propertyName"), values).setDuration(animator.getInt("duration"));
+        }
 
         switch (animateType) {
           case "fadeAwayAnimator":
-            spruceAnimator.animateWith(DefaultAnimations.fadeAwayAnimator(targetView, duration));
+            if (finalAnimator == null) {
+              spruceAnimator.animateWith(DefaultAnimations.fadeAwayAnimator(targetView, duration));
+            } else {
+              spruceAnimator.animateWith(DefaultAnimations.fadeAwayAnimator(targetView, duration), finalAnimator);
+            }
+
             break;
           case "fadeInAnimator":
-            spruceAnimator.animateWith(DefaultAnimations.fadeInAnimator(targetView, duration));
+            if (finalAnimator == null) {
+              spruceAnimator.animateWith(DefaultAnimations.fadeInAnimator(targetView, duration));
+            } else {
+              spruceAnimator.animateWith(DefaultAnimations.fadeInAnimator(targetView, duration), finalAnimator);
+            }
+
             break;
           case "growAnimator":
-            spruceAnimator.animateWith(DefaultAnimations.growAnimator(targetView, duration));
+            if (finalAnimator == null) {
+              spruceAnimator.animateWith(DefaultAnimations.growAnimator(targetView, duration));
+            } else {
+              spruceAnimator.animateWith(DefaultAnimations.growAnimator(targetView, duration), finalAnimator);
+            }
+
             break;
           case "shrinkAnimator":
-            spruceAnimator.animateWith(DefaultAnimations.shrinkAnimator(targetView, duration), ObjectAnimator.ofFloat(targetView, "translationX", -targetView.getWidth(), 0f).setDuration(800));
+            if (finalAnimator == null) {
+              spruceAnimator.animateWith(DefaultAnimations.shrinkAnimator(targetView, duration));
+            } else {
+              spruceAnimator.animateWith(DefaultAnimations.shrinkAnimator(targetView, duration), finalAnimator);
+            }
+
             break;
           case "spinAnimator":
-            spruceAnimator.animateWith(DefaultAnimations.spinAnimator(targetView, duration));
+            if (finalAnimator == null) {
+              spruceAnimator.animateWith(DefaultAnimations.spinAnimator(targetView, duration));
+            } else {
+              spruceAnimator.animateWith(DefaultAnimations.spinAnimator(targetView, duration), finalAnimator);
+            }
+
             break;
         }
 

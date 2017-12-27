@@ -12,9 +12,9 @@ class LinearSort {
       this.reversed = reversed;
       this.direction = direction;
 
-    if (this.interObjectDelay === undefined) this.interObjectDelay = "50";
-    if (this.reversed === undefined) this.reversed = "false";
-    if (this.direction === undefined) this.direction = LinearSort.Direction.TOP_TO_BOTTOM;
+    if (this.interObjectDelay === undefined) this.interObjectDelay = 50
+    if (this.reversed === undefined) this.reversed = false
+    if (this.direction === undefined) this.direction = LinearSort.Direction.TOP_TO_BOTTOM
   }
 
   toJSON() {

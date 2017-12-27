@@ -12,8 +12,8 @@ class CorneredSort {
       this.reversed = reversed
       this.corner = corner
 
-    if (this.interObjectDelay === undefined) this.interObjectDelay = "50"
-    if (this.reversed === undefined) this.reversed = "false"
+    if (this.interObjectDelay === undefined) this.interObjectDelay = 50
+    if (this.reversed === undefined) this.reversed = false
     if (this.corner === undefined) this.corner = CorneredSort.Corner.TOP_LEFT;
   }
 

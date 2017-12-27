@@ -1,5 +1,5 @@
 
-const DEFAULT_DURATION = "800"
+const DEFAULT_DURATION = 800
 
 class DefaultAnimations {
   static fadeAwayAnimator(duration) {

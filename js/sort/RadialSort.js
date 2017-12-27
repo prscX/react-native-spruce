@@ -17,9 +17,9 @@ class RadialSort {
       this.reversed = reversed
       this.position = position
 
-    if (this.interObjectDelay === undefined) this.interObjectDelay = "50";
-    if (this.reversed === undefined) this.reversed = "false";
-    if (this.position === undefined) this.position = RadialSort.Position.TOP_LEFT;
+    if (this.interObjectDelay === undefined) this.interObjectDelay = 50
+    if (this.reversed === undefined) this.reversed = false
+    if (this.position === undefined) this.position = RadialSort.Position.TOP_LEFT
   }
 
   toJSON() {

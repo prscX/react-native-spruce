@@ -62,13 +62,13 @@ export default class App extends Component<{}> {
     setTimeout(() => {
       let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
 
-      let defaultSort = new CorneredSort("100");
-      let defaultAnimations = DefaultAnimations.shrinkAnimator('800');
+      let defaultSort = new CorneredSort(100);
+      let defaultAnimations = DefaultAnimations.shrinkAnimator(800);
 
       spruceBuilder.sortWith(defaultSort)
       spruceBuilder.animateWith(defaultAnimations);
       
-      spruceBuilder.start()
+      spruceBuilder.start({ propertyName: "translationX", values: [ 5000, 0 ], duration: 800 });
     }, 100);
   }
 
