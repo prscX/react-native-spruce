@@ -66,37 +66,37 @@ spruceBuilder.start();
 
 To make sure that developers can use RNSpruce out of the box, we included about 8 stock `SortFunction` implementations. These are some of the main functions we use at WillowTree and are so excited to see what others come up with!
 
-- DefaultSort
+- `DefaultSort`
 ```javascript
 let sort = new defaultSort(/*interObjectDelay=*/100L);
 ```
 
-- LinearSort
+- `LinearSort`
 ```javascript
 let sort = new LinearSort(/*interObjectDelay=*/100L, /*reversed=*/false, LinearSort.Direction.TOP_TO_BOTTOM);
 ```
 
-- CorneredSort
+- `CorneredSort`
 ```javascript
 let sort = new CorneredSort(/*interObjectDelay=*/100L, /*reversed=*/false, CorneredSort.Corner.TOP_LEFT);
 ```
 
-- RadialSort
+- `RadialSort`
 ```javascript
 let sort = new RadialSort(/*interObjectDelay=*/100L, /*reversed=*/false, RadialSort.Position.TOP_LEFT);
 ```
 
-- RandomSort
+- `RandomSort`
 ```javascript
 let sort = new RandomSort(/*interObjectDelay=*/100L);
 ```
 
-- InlineSort
+- `InlineSort`
 ```javascript
 let sort = new InlineSort(/*interObjectDelay=*/100L, /*reversed=*/false, LinearSort.Direction.TOP_TO_BOTTOM);
 ```
 
-- ContinousSort
+- `ContinousSort`
 ```javascript
 let sort = new ContinousSort(/*interObjectDelay=*/100L, /*reversed=*/false, ContinousSort.Position.TOP_LEFT);
 ```
