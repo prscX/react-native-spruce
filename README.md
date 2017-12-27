@@ -16,8 +16,6 @@ Before we dive into on how to use this library. We would like to thank all the c
 
 `$ npm install react-native-spruce --save`
 
-### Mostly automatic installation
-
 `$ react-native link react-native-spruce`
 
 
@@ -26,10 +24,6 @@ Before we dive into on how to use this library. We would like to thank all the c
 import {
   Spruce,
   DefaultSort,
-  RandomSort,
-  CorneredSort,
-  LinearSort,
-  RadialSort,
   DefaultAnimations
 } from "react-native-spruce";
 
