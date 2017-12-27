@@ -111,6 +111,9 @@ To make everybody's lives easier, the stock animators perform basic View animati
 - `DefaultAnimations.fadeInAnimator(duration:number)`
 - `DefaultAnimations.spinAnimator(duration:number)`
 
+Experiment which ones work for you! If you think of anymore feel free to add them to the library yourself!
+
+
 
 ## Contributions
 Any type of contribution will be very much appreciated
