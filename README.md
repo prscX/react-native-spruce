@@ -8,6 +8,7 @@ It provides a React Native Bridge around native spruce library. Here is a quick 
 
 ![Example](https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/extensibility-tests.gif)
 
+Before we dive into on how to use this library. We would like to thank all the contributor of [willowtreeapps/spruce-android](https://github.com/willowtreeapps/spruce-android) & [willowtreeapps/spruce-ios](https://github.com/willowtreeapps/spruce-ios) for providing such a awesome nice, cool library
 
 > **Note**: Currently it is supported only on Android Platform
 
@@ -47,3 +48,11 @@ spruceBuilder.start();
 
 ```
 
+
+# Contributions
+Any type of contribution will be very much appreciated
+
+# License
+Copyright @2017 Pranav Raj Singh Chauhan
+
+The React Native TapTargetView is provided under the MIT License.
