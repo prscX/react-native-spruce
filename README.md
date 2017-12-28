@@ -10,7 +10,7 @@ It provides a React Native Bridge around native spruce library. Here is a quick 
 
 Before we dive into on how to use this library. We would like to thank all the contributor of [willowtreeapps/spruce-android](https://github.com/willowtreeapps/spruce-android) & [willowtreeapps/spruce-ios](https://github.com/willowtreeapps/spruce-ios) for providing such a awesome nice, cool library
 
-> **Note**: Currently it is supported only on Android Platform
+> **Note**: Currently on iOS it is not supported due to unavailable of Spruce Objective-C wrappers
 
 ## Getting started
 
