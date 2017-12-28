@@ -9,5 +9,12 @@
 }
 RCT_EXPORT_MODULE()
 
+
+RCT_EXPORT_METHOD(StartAnimator:(nonnull NSNumber *)view sortWith:(NSDictionary *)sortWith animateWith:(NSDictionary *)animateWith animator:(NSDictionary *)animator) {
+
+
+    
+}
+
 @end
   
