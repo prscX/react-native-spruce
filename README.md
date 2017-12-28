@@ -121,4 +121,4 @@ Any type of contribution will be very much appreciated
 ## License
 Copyright @2017 Pranav Raj Singh Chauhan
 
-The React Native TapTargetView is provided under the MIT License.
+The React Native Spruce is provided under the MIT License.
