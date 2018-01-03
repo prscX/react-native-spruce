@@ -1,7 +1,7 @@
 
 package ui.spruce;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,7 +14,10 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class RNSprucePackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new RNSpruceModule(reactContext));
+      List<NativeModule> modules = new ArrayList<NativeModule>();
+      modules.add(new RNSpruceModule(reactContext));
+
+      return modules;
     }
 
     // Deprecated from RN 0.47
@@ -24,6 +27,9 @@ public class RNSprucePackage implements ReactPackage {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-      return Collections.emptyList();
+        List<ViewManager> modules = new ArrayList<>();
+        modules.add(new RNSpruceViewComponent());
+
+        return modules;
     }
 }

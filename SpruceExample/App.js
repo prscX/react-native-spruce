@@ -58,31 +58,16 @@ const items = [
 
 export default class App extends Component<{}> {
 
-  componentDidMount () {
-    setTimeout(() => {
-      let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
-
-      let defaultSort = new CorneredSort(100);
-      let defaultAnimations = DefaultAnimations.shrinkAnimator(800);
-
-      spruceBuilder.sortWith(defaultSort)
-      spruceBuilder.animateWith(defaultAnimations);
-      
-      spruceBuilder.start({ propertyName: "translationX", values: [ 5000, 0 ], duration: 800 });
-    }, 100);
-  }
-
   renderFlatListItem(item) {
-      return <View 
-      ref={ref => {this.refItem = ref}}
-      key={"parentView" + item.topicCat} style={{ flex: 1, height: 100, backgroundColor: "#ffffff", alignItems: "center", margin: 5 }}
-      >
+    return <Spruce>
+        <View key={"parentView" + item.topicCat} style={{ flex: 1, height: 100, backgroundColor: "#ffffff", alignItems: "center", margin: 5 }}>
           <Placeholder.ImageContent key={"placeholder" + item.topicCat} size={60} lineNumber={4} lineSpacing={5} lastLineWidth="30%" onReady={false} color={"#c7e3f2"}>
             <Text key={"text" + item.topicCat}>
               Placeholder has finished :D
             </Text>
           </Placeholder.ImageContent>
-        </View>;
+        </View>
+      </Spruce>;
   }
 
   renderSeparator () {
@@ -90,17 +75,13 @@ export default class App extends Component<{}> {
   }
 
   render() {
-    // return <View style={styles.container} ref={ref => {
-    //       this.ref = ref;
-    //     }}>
-    //     <Text style={styles.welcome}>Welcome to React Native!</Text>
-    //     <Text style={styles.instructions}>To get started, edit App.js</Text>
-    //     <Text style={styles.instructions}>{instructions}</Text>
-    //   </View>;
+    let sortWith = new CorneredSort(100);
+    let animateWith = DefaultAnimations.shrinkAnimator(1000)
+
     return <View style={{ flex: 1, backgroundColor: "#ededed" }}>
-        <FlatList key={"flatlistexample"} data={items} renderItem={({ item }) => this.renderFlatListItem(item)} ref={ref => {
-            this.ref = ref;
-          }} ItemSeparatorComponent={this.renderSeparator} style={{ backgroundColor: "#ededed" }} keyExtractor={(item, index) => index} />
+        <Spruce sortWith={sortWith} animateWith={animateWith} animator={{ propertyName: "translationX", values: [5000, 0], duration: 800 }}>
+          <FlatList key={"flatlistexample"} data={items} renderItem={({ item }) => this.renderFlatListItem(item)} ItemSeparatorComponent={this.renderSeparator} style={{ backgroundColor: "#ededed" }} keyExtractor={(item, index) => index} />
+        </Spruce>
       </View>;
   }
 }

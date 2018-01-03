@@ -4,6 +4,7 @@ package ui.spruce;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -44,16 +45,20 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
   @ReactMethod 
   public void StartAnimator(final int parentView, final ReadableMap sortWith, final ReadableMap animateWith, final ReadableMap animator, final Promise promise) {
     final Activity activity = this.getCurrentActivity();
-    ViewGroup parentTargetView = activity.findViewById(parentView);
+    final ViewGroup parentTargetView = activity.findViewById(parentView);
 
     if (parentTargetView == null) return;
-    if (parentTargetView instanceof ReactScrollView) parentTargetView = (ViewGroup) parentTargetView.getChildAt(0);
 
-    final ViewGroup targetView = (ViewGroup) parentTargetView;
+    ViewGroup childTargetView = (ViewGroup) parentTargetView.getChildAt(0);
+    if (childTargetView instanceof ReactScrollView) childTargetView = (ViewGroup) childTargetView.getChildAt(0);
+
+    final ViewGroup targetView = (ViewGroup) childTargetView;
 
     activity.runOnUiThread(new Runnable() {
       @Override
       public void run() {
+        parentTargetView.setVisibility(View.VISIBLE);
+
         Spruce.SpruceBuilder spruceAnimator = new Spruce.SpruceBuilder(targetView);
 
         String sortType = sortWith.getString("name");
