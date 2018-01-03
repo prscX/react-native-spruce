@@ -10,7 +10,7 @@ It provides a React Native Bridge around native spruce library. Here is a quick 
 
 Before we dive into on how to use this library. We would like to thank all the contributor of [willowtreeapps/spruce-android](https://github.com/willowtreeapps/spruce-android) & [willowtreeapps/spruce-ios](https://github.com/willowtreeapps/spruce-ios) for providing such a awesome nice, cool library
 
-> **Note**: Currently on iOS it is not supported due to unavailable of Spruce Objective-C wrappers
+> **Note**: Currently on iOS it is not supported due to unavailable of Spruce Objective-C wrappers, please refer issue: [101](https://github.com/willowtreeapps/spruce-ios/issues/101)
 
 ## Getting started
 
@@ -23,22 +23,21 @@ Before we dive into on how to use this library. We would like to thank all the c
 ```javascript
 import {
   Spruce,
-  DefaultSort,
+  CorneredSort,
   DefaultAnimations
 } from "react-native-spruce";
 
 
 // TODO: What to do with the module?
 
-let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
+render () {
+  let sortWith = new CorneredSort(100);
+  let animateWith = DefaultAnimations.shrinkAnimator(1000)
 
-let defaultSort = new DefaultSort(100);
-let defaultAnimations = DefaultAnimations.shrinkAnimator(800);
-
-spruceBuilder.sortWith(defaultSort)
-spruceBuilder.animateWith(defaultAnimations);
-
-spruceBuilder.start();
+  <Spruce sortWith={sortWith} animateWith={animateWith} animator={{ propertyName: "translationX", values: [5000, 0], duration: 800 }}>
+    <View />
+  </Spruce>
+}
 
 ```
 
@@ -49,26 +48,11 @@ Luckily, RNSpruce comes with 8 `SortFunction` implementations with a wide open p
 let sort = new LinearSort(/*interObjectDelay=*/100L, /*reversed=*/false, LinearSort.Direction.TOP_TO_BOTTOM);
 ```
 
-In this example we have created a `LinearSort` which will have views animate in from the top to bottom. We can change the look and feel of the animation by using a `RadialSort` instead which will have the views animate in a circular fashion. If we wanted to use this `sort` in an actual Spruce `start()` call then that would look something like:
-
-```javascript
-let spruceBuilder = new Spruce.SpruceBuilder(this.ref);
-
-let linearSort = new LinearSort(100);
-let defaultAnimations = DefaultAnimations.shrinkAnimator(800);
-
-spruceBuilder.sortWith(linearSort)
-spruceBuilder.animateWith(defaultAnimations);
-
-spruceBuilder.start();
-
-```
-
 To make sure that developers can use RNSpruce out of the box, we included about 8 stock `SortFunction` implementations. These are some of the main functions we use at WillowTree and are so excited to see what others come up with!
 
 - `DefaultSort`
 ```javascript
-let sort = new defaultSort(/*interObjectDelay=*/100L);
+let sort = new DefaultSort(/*interObjectDelay=*/100L);
 ```
 
 - `LinearSort`
@@ -110,6 +94,7 @@ To make everybody's lives easier, the stock animators perform basic View animati
 - `DefaultAnimations.fadeAwayAnimator(duration:number)`
 - `DefaultAnimations.fadeInAnimator(duration:number)`
 - `DefaultAnimations.spinAnimator(duration:number)`
+
 
 Experiment which ones work for you! If you think of anymore feel free to add them to the library yourself!
 
