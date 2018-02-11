@@ -10,7 +10,8 @@
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-spruce": "../",
-    "rn-placeholder": "1.1.0"
+    "rn-placeholder": "1.1.0",
+    "react-native-super-grid": "2.0.2"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",

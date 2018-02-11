@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import GridView from "react-native-super-grid"; // 2.0.2
 import { Spruce, CorneredSort, DefaultAnimations } from "react-native-spruce"; // 0.0.2
 
-export default class App extends Component {
+export default class Grid extends Component {
   render() {
     let sortWith = new CorneredSort(60);
     let animateWith = DefaultAnimations.growAnimator(1000);

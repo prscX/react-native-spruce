@@ -19,7 +19,7 @@ class ContinuousSort {
 
     if (this.interObjectDelay === undefined) this.interObjectDelay = 50;
     if (this.reversed === undefined) this.reversed = false;
-    if (this.position === undefined) this.position = RadialSort.Position.TOP_LEFT;
+    if (this.position === undefined) this.position = ContinuousSort.Position.TOP_LEFT;
   }
 
   toJSON() {
