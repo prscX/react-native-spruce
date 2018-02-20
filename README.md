@@ -1,6 +1,6 @@
 
 <p align="center">
-  ![Spruce Logo](https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/header_image.png)
+  <img src="https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/header_image.png" />
 </p>
 
 <p align="center">
