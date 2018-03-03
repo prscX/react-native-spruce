@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/header_image.png" />
+  <img src="https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/header_image.png" height="300" width="600" />
 </p>
 
 <p align="center">
