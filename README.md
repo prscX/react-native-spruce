@@ -31,6 +31,7 @@ Before we dive into on how to use this library. We would like to thank all the c
 
 `$ react-native link react-native-spruce`
 
+> **Note**: Android SDK 27 > is supported
 
 ## Usage
 ```javascript
