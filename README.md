@@ -118,7 +118,7 @@ Experiment which ones work for you! If you think of anymore feel free to add the
 Any type of contribution will be very much appreciated
 
 ## License
-Copyright @2017 Pranav Raj Singh Chauhan
+Copyright @ Pranav Raj Singh Chauhan
 
-The React Native Spruce is provided under the MIT License.
+RNSpruce is provided under the Apache License.
 
