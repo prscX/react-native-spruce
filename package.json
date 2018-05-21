@@ -1,6 +1,6 @@
 {
   "name": "react-native-spruce",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "React Native Bridge for Spruce Library",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   "keywords": ["react-native"],
   "author": "Pranav Raj Singh Chauhan",
   "devDependencies": {
-    "prettier-pack": "0.0.2"
+    "prettier-pack": "0.0.6"
   },
-  "license": "MIT"
+  "license": "Apache 2.0 License"
 }

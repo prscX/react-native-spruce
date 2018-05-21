@@ -31,9 +31,33 @@ Before we dive into on how to use this library. We would like to thank all the c
 
 `$ react-native link react-native-spruce`
 
+- **Android**
+
+  - Please copy below snippet in your app `build.gradle` file:
+
+```
+buildscript {
+    repositories {
+        jcenter()
+        google()
+        ...
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+        google()
+        ...
+    }
+}
+```
+
 > **Note**: Android SDK 27 > is supported
 
 ## Usage
+
 ```javascript
 import {
   Spruce,

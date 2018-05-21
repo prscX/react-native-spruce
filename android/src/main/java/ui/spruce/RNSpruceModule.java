@@ -29,11 +29,8 @@ import java.util.ArrayList;
 
 public class RNSpruceModule extends ReactContextBaseJavaModule {
 
-  private final ReactApplicationContext reactContext;
-
   public RNSpruceModule(ReactApplicationContext reactContext) {
     super(reactContext);
-    this.reactContext = reactContext;
   }
 
   @Override
@@ -44,8 +41,7 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
 
   @ReactMethod 
   public void StartAnimator(final int parentView, final ReadableMap sortWith, final ReadableMap animateWith, final ReadableMap animator, final Promise promise) {
-    final Activity activity = this.getCurrentActivity();
-    final ViewGroup parentTargetView = activity.findViewById(parentView);
+    final ViewGroup parentTargetView = getCurrentActivity().findViewById(parentView);
 
     if (parentTargetView == null) return;
 
@@ -54,7 +50,7 @@ public class RNSpruceModule extends ReactContextBaseJavaModule {
 
     final ViewGroup targetView = (ViewGroup) childTargetView;
 
-    activity.runOnUiThread(new Runnable() {
+    getCurrentActivity().runOnUiThread(new Runnable() {
       @Override
       public void run() {
         parentTargetView.setVisibility(View.VISIBLE);

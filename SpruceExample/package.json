@@ -7,8 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.0.0",
-    "react-native": "0.51.0",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
     "react-native-spruce": "../",
     "rn-placeholder": "1.1.0",
     "react-native-super-grid": "2.0.2"
