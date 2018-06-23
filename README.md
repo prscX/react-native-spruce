@@ -1,3 +1,4 @@
+<h1 align="center">
 
 <p align="center">
   <img src="https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/header_image.png" height="300" width="600" />
@@ -10,7 +11,10 @@
 </p>
 
 
-# React Native Spruce - iOS & Android
+    ReactNative Spruce - (Android & iOS)
+
+If this project has helped you out, please support us with a star 🌟
+</h1>
 
 Spruce is a lightweight animation library that helps choreograph the animations on the screen. With so many different animation libraries out there, developers need to make sure that each view is animating at the appropriate time. Spruce can help designers request complex multi-view animations and not have the developers cringe at the prototype.
 
@@ -20,12 +24,9 @@ It provides a React Native Bridge around native spruce library. Here is a quick 
   <img src="https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/extensibility-tests.gif" />
 </p>
 
-
-Before we dive into on how to use this library. We would like to thank all the contributor of [willowtreeapps/spruce-android](https://github.com/willowtreeapps/spruce-android) & [willowtreeapps/spruce-ios](https://github.com/willowtreeapps/spruce-ios) for providing such a awesome nice, cool library
-
 > **Note**: Currently on iOS it is not supported due to unavailable of Spruce Objective-C wrappers, please refer issue: [101](https://github.com/willowtreeapps/spruce-ios/issues/101)
 
-## Getting started
+## 📖 Getting started
 
 `$ npm install react-native-spruce --save`
 
@@ -56,7 +57,7 @@ allprojects {
 
 > **Note**: Android SDK 27 > is supported
 
-## Usage
+## 💻 Usage
 
 ```javascript
 import {
@@ -137,12 +138,35 @@ To make everybody's lives easier, the stock animators perform basic View animati
 Experiment which ones work for you! If you think of anymore feel free to add them to the library yourself!
 
 
+## ✨ Credits
 
-## Contributions
-Any type of contribution will be very much appreciated
+- [willowtreeapps/spruce-android](https://github.com/willowtreeapps/spruce-android)
+- [willowtreeapps/spruce-ios](https://github.com/willowtreeapps/spruce-ios)
 
-## License
-Copyright @ Pranav Raj Singh Chauhan
+## 🤔 How to contribute
+Have an idea? Found a bug? Please raise to [ISSUES](https://github.com/prscX/react-native-spruce/issues).
+Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
 
-RNSpruce is provided under the Apache License.
+## 💫 Where is this library used?
+If you are using this library in one of your projects, add it in this list below. ✨
 
+
+## 📜 License
+This library is provided under the Apache 2 License.
+
+RNSpruce @ [prscX](https://github.com/prscX)
+
+## 💖 Support my projects
+I open-source almost everything I can, and I try to reply everyone needing help using these projects. Obviously, this takes time. You can integrate and use these projects in your applications for free! You can even change the source code and redistribute (even resell it).
+
+However, if you get some profit from this or just want to encourage me to continue creating stuff, there are few ways you can do it:
+* Starring and sharing the projects you like 🚀
+* If you're feeling especially charitable, please follow [prscX](https://github.com/prscX) on GitHub.
+
+  <a href="https://www.buymeacoffee.com/prscX" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
+  Thanks! ❤️
+  <br/>
+  [prscX.github.io](https://prscx.github.io)
+  <br/>
+  </ Pranav >
