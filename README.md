@@ -20,11 +20,11 @@ Spruce is a lightweight animation library that helps choreograph the animations 
 
 It provides a React Native Bridge around native spruce library. Here is a quick example of how you can Spruce up your screens!
 
+> **Note**: Currently on iOS it is not supported due to unavailable of Spruce Objective-C wrappers, please refer issue: [101](https://github.com/willowtreeapps/spruce-ios/issues/101)
+
 <p align="center">
   <img src="https://github.com/willowtreeapps/spruce-ios/raw/master/imgs/extensibility-tests.gif" />
 </p>
-
-> **Note**: Currently on iOS it is not supported due to unavailable of Spruce Objective-C wrappers, please refer issue: [101](https://github.com/willowtreeapps/spruce-ios/issues/101)
 
 ## 📖 Getting started
 
