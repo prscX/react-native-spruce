@@ -12,7 +12,7 @@
   "keywords": ["react-native"],
   "author": "Pranav Raj Singh Chauhan",
   "devDependencies": {
-    "prettier-pack": "0.0.6"
+    "prettier-pack": "0.0.7"
   },
   "license": "Apache License 2.0"
 }
