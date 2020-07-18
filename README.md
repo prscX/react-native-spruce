@@ -11,7 +11,9 @@
 </p>
 
 
-    ReactNative Spruce - (Android & iOS)
+    ReactNative Spruce - (Android & iOS): Deprecated
+
+Due to time constraint, this library is deprecated and not maintained anymore, You can still use this library.
 
 If this project has helped you out, please support us with a star 🌟
 </h1>
